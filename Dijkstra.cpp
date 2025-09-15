@@ -55,8 +55,6 @@ int main () {
         else if (dp[momentalno.kraj]>dist) {
             dp[momentalno.kraj]=dist;
         }
-        cout<<momentalno.pocetok<<"->"<<momentalno.kraj<<"["<<momentalno.tezina<<"]"<<endl;
-        cout<<momentalno.kraj<<"("<<dp[momentalno.kraj]<<")"<<endl;
         if (a[momentalno.kraj]!=1) {
             for (int i=0; i<drvo[momentalno.kraj].size(); i++) {
                 rebro tmp(drvo[momentalno.kraj][i].tezina+momentalno.tezina ,drvo[momentalno.kraj][i].pocetok, drvo[momentalno.kraj][i].kraj);
