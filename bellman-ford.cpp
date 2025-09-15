@@ -37,4 +37,5 @@ int main () {
     for (int i=0; i<v; i++) {
         cout<<i<<"("<<distanci[i]<<")"<<endl;
     }
+    return 0;
 }
