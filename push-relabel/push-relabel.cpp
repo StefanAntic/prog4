@@ -35,11 +35,6 @@ void discharge(int u, int n, vector<int> &seen,vector<vector<int> > &flow,vector
 }
 
 int max_flow(int s, int t, int n, vector<int> &seen, vector<vector<int> > &flow, queue<int> &excess_vertices , vector<int> &height, vector<int> &excess, vector<vector<int>> &capacity) {
-    height.assign(n, 0);
-    height[s] = n;
-    flow.assign(n, vector<int>(n, 0));
-    excess.assign(n, 0);
-    excess[s]=10000000;
     for (int i=1; i<n; i++) {
         push(s, i, flow, excess, excess_vertices, capacity);
     }
@@ -61,8 +56,10 @@ int main () {
     cin>>n>>m;
     vector<vector<int>> capacity(n,vector<int>(n, 0));
     vector<vector<int>> flow(n,vector<int>(n, 0));
-    vector<int> height, excess, seen;
+    vector<int> height(n,0), excess(n,0), seen;
     queue<int> excess_vertices;
+    height[0]=n;
+    excess[0]=10000000;
     for (int i=0; i<m; i++) {
         int tmp, tmp1, tmp2;
         cin>>tmp>>tmp1>>tmp2;
