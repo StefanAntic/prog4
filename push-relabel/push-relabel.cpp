@@ -38,7 +38,6 @@ int max_flow(int s, int t, int n, vector<int> &seen, vector<vector<int> > &flow,
     for (int i=1; i<n; i++) {
         push(s, i, flow, excess, excess_vertices, capacity);
     }
-    seen.assign(n, 0);
     while (excess_vertices.size()!=0) {
         int u=excess_vertices.front();
         excess_vertices.pop();
@@ -56,7 +55,7 @@ int main () {
     cin>>n>>m;
     vector<vector<int>> capacity(n,vector<int>(n, 0));
     vector<vector<int>> flow(n,vector<int>(n, 0));
-    vector<int> height(n,0), excess(n,0), seen;
+    vector<int> height(n,0), excess(n,0), seen(n,0);
     queue<int> excess_vertices;
     height[0]=n;
     excess[0]=10000000;
