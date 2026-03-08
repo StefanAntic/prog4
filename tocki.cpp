@@ -23,11 +23,16 @@ pair<float, float> Translacija (pair<float,float> a, float x1, float y1) {
     vector<vector<float>> c=mnozenje_mca(b,a1);
     return {c[0][0],c[1][0]};
 }
-pair<float, float> rotacija (pair<float,float> a, float agol) {
-    vector<vector<float>> a1={{a.first},{a.second}};
-    vector <vector<float>> b={{cos(agol), -sin(agol)},{sin(agol),cos(agol)}};
-    vector<vector<float>> c=mnozenje_mca(b,a1);
-    return {c[0][0],c[1][0]};
+vector<vector<float>> rotacija (vector<vector<float>> a, float agol, int oska) {
+    agol=agol*M_PI/180;
+    if (oska==0) {
+        return mnozenje_mca(a,{{1,0,0},{0,cos(agol),-1*sin(agol)},{0,sin(agol),cos(agol)}});
+    }
+    else if (oska==1) {
+        return mnozenje_mca(a,{{cos(agol),0,sin(agol)},{0,1,0},{-1*sin(agol),0,cos(agol)}});
+    }
+    else return mnozenje_mca(a,{{cos(agol),-1*sin(agol),0},{sin(agol),cos(agol),0},{0,0,1}});
+    
 }
 pair<float, float> skaliranje (pair<float,float> a, float skalar) {
     vector<vector<float>> a1={{a.first},{a.second}};
@@ -38,12 +43,15 @@ pair<float, float> skaliranje (pair<float,float> a, float skalar) {
 
 
 int main () {
-    float a,b;
-    cin>>a>>b;
-    pair<float, float> c=Translacija({a,b}, 2,2);
-    cout<<c.first<<" "<<c.second<<endl;
-    pair<float,float> d=rotacija (c,M_PI/2);
-    cout<<d.first<<" "<<d.second<<endl;
-    pair<float,float> e=skaliranje(d,2);
-    cout<<e.first<<" "<<e.second<<endl;
+    float a,b,c;
+    cin>>a>>b>>c;
+    vector<vector<float>> x={{a},{b},{c}};
+    vector<vector<float>> d=rotacija(x,90,0);
+    for (int i=0; i<d.size(); i++) {
+        for (int j=0; j<d[i].size(); j++) {
+            cout<<d[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
 }
